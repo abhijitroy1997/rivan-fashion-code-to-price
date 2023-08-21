@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rivan Fashion</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        .banner-image{
+            width: 70%;
+            margin-top: 20px;
+        }
+
+        #container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        input {
+            width: 40%;
+            padding: 10px;
+            font-size: 18px;
+            resize: none;
+            margin: 30px;
+            border-radius: 8px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #3498db;
+            border: none;
+            color: white;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+        #resetBtn{
+            background-color: darkgreen;
+        }
+        #encodedOutput {
+            margin-top: 20px;
+            font-size: 33px;
+        }
+        #encodedOutput2 {
+            margin-top: 20px;
+            font-size: 20px;
+        }
+    </style>
+    <script>
+      // Define the character-to-number mapping
+      const charToNum = {
+        o: 0,
+        a: 1,
+        b: 2,
+        c: 3,
+        d: 4,
+        e: 5,
+        f: 6,
+        g: 7,
+        h: 8,
+        i: 9,
+        j: 10,
+      };
+
+      // Function to encode a string
+      function encodeString(inputStr) {
+        const encoded = [];
+        for (let char of inputStr) {
+          if (char.toLowerCase() in charToNum) {
+            encoded.push(charToNum[char.toLowerCase()]);
+          } else {
+            encoded.push(char);
+          }
+        }
+        return encoded.join("");
+      }
+
+      // Function to handle button click
+      function encodeButtonClicked() {
+        const inputElement = document.getElementById("inputText");
+        const outputElement = document.getElementById("encodedOutput");
+        const outputElement2 = document.getElementById("encodedOutput2");
+        const inputStr = inputElement.value;
+        const encodedStr = encodeString(inputStr);
+        outputElement.textContent = `Entered Code : " ${inputStr} "`;
+        outputElement2.textContent = `Price: ${encodedStr}`;
+      }
+      function refreshPage() {
+            location.reload();
+        }
+    </script>
+  </head>
+  <body>
+   <img src="./banner.jpeg" alt="banner image" class="banner-image">
+   <br>
+    <input id="inputText" rows="4" cols="50" placeholder="Enter code here"></input><br />
+    <button onclick="encodeButtonClicked()">See Price</button>
+    <button id="resetBtn" onclick="refreshPage()">clear</button>
+    <p id="encodedOutput"></p>
+    <p id="encodedOutput2"></p>
+  </body>
+</html>
