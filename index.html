@@ -8,12 +8,14 @@
             text-align: center;
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0;
+            background-color: #7A0E63;
         }
 
         .banner-image{
             width: 90%;
-            margin-top: 20px;
+            margin-top: 5px;
+            border-radius: 10px;
+
         }
 
         #container {
@@ -43,7 +45,7 @@
         }
 
         button:hover {
-            background-color: #2980b9;
+            background-color: #0782d3;
         }
         #resetBtn{
             background-color: darkgreen;
@@ -71,7 +73,7 @@
         h: 8,
         i: 9,
       };
-
+ 
       // Function to encode a string
       function encodeString(inputStr) {
         const encoded = [];
@@ -94,18 +96,23 @@
         const encodedStr = encodeString(inputStr);
         outputElement.textContent = `Entered Code : " ${inputStr} "`;
         outputElement2.textContent = `Price: ${encodedStr}`;
+        inputElement.value='';
       }
-      function refreshPage() {
-            location.reload();
+      window.onload = function () {
+      const inputElement = document.getElementById("inputText");
+      inputElement.onkeyup = function (event) {
+        if (event.key === "Enter") {
+          encodeButtonClicked();
         }
+      };
+    };
     </script>
   </head>
   <body>
    <img src="./banner.jpeg" alt="banner image" class="banner-image">
    <br>
     <input id="inputText" rows="4" cols="50" placeholder="Enter code here"></input><br />
-    <button onclick="encodeButtonClicked()">See Price</button>
-    <button id="resetBtn" onclick="refreshPage()">clear</button>
+    <button onclick="encodeButtonClicked()">Decode</button>
     <p id="encodedOutput"></p>
     <p id="encodedOutput2"></p>
   </body>
